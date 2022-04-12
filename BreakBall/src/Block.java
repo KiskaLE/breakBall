@@ -20,11 +20,13 @@ public class Block {
 
     int x;
     int y;
-
+    
+    GamePanel panel;
+    
     Rectangle topHitbox, rightHitbox, bottomHitbox, leftHitbox;
     Rectangle hitBox;
 
-    public Block(int x, int y, int height, int width, int hp) {
+    public Block(int x, int y, int height, int width, int hp, GamePanel panel) {
         this.x = x;
         this.y = y;
 
@@ -32,6 +34,7 @@ public class Block {
         this.width = width;
         this.hp = hp;
 
+        this.panel = panel;
         //make Block hitboxes
         topHitbox = new Rectangle(x, y, width, 1);
         bottomHitbox = new Rectangle(x, y + height - 1, width, 1);
@@ -41,7 +44,7 @@ public class Block {
     }
 
     public void set() {
-
+    panel.score +=50;
     }
 
     public void draw(Graphics2D gtd) {

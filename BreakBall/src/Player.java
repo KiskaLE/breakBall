@@ -34,19 +34,6 @@ public class Player {
         leftHitbox = new Rectangle(x, y, 1, height);
     }
 
-    public Player(GamePanel panel, int x, int y, int width, int height, int live, int level) {
-        this.panel = panel;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.live = live;
-        this.level = level;
-
-        topHitbox = new Rectangle(x, y, width, 1);
-        rightHitbox = new Rectangle(x + width - 1, y, 1, height);
-        leftHitbox = new Rectangle(x, y, 1, height);
-    }
 
     public void set() {
         int maxSpeed = 12;
@@ -83,9 +70,9 @@ public class Player {
         }
 
         //meze pohybu
-        if (x <= panel.width - width && x > 0) {
+        if (x <= panel.getWidth() - width && x > 0) {
             x += xSpeed;
-        } else if (x > panel.width - width) {
+        } else if (x > panel.getWidth() - width) {
             x--;
         } else {
             x++;

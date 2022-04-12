@@ -72,7 +72,7 @@ public class Ball {
     }
 
     private void intersectsCheck() {
-        if (x < 0 || x > panel.width - radius) {
+        if (x < 0 || x > panel.getWidth() - radius) {
             xSpeed *= -1;
         }
         if (y < 0) {
@@ -145,6 +145,7 @@ public class Ball {
                     block.hp--;
                 }
                 if (isDead(block)) {
+                    panel.blocksArray[i].set();
                     removeBlock(block, i);
                 }
             }

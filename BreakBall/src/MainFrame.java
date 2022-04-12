@@ -208,35 +208,46 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void level1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ActionPerformed
-        createPanel(1);
+        panel = new GamePanel(this);
+        panel.setBlocks(39, 2, 50, 25, 2);
+        panel.setBall(15, 3);
+        
+        panel.setLocation(0, 0);
+        panel.setSize(this.getWidth(), this.getHeight() - 80);
+        panel.setVisible(true);
+        add(panel);
+        addKeyListener(new KeyChecker(this));
+        setMenuVisibility(false);
+        
+        
     }//GEN-LAST:event_level1ActionPerformed
 
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
-        createPanel(2);
+        
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
-        createPanel(3);
+        
     }//GEN-LAST:event_level3ActionPerformed
 
     private void level4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4ActionPerformed
-        createPanel(4);
+        
     }//GEN-LAST:event_level4ActionPerformed
 
     private void level6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level6ActionPerformed
-        createPanel(6);
+        
     }//GEN-LAST:event_level6ActionPerformed
 
     private void level7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7ActionPerformed
-        createPanel(7);
+        
     }//GEN-LAST:event_level7ActionPerformed
 
     private void level8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8ActionPerformed
-        createPanel(8);
+        
     }//GEN-LAST:event_level8ActionPerformed
 
     private void level5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5ActionPerformed
-        createPanel(5);
+        
     }//GEN-LAST:event_level5ActionPerformed
 
     /**
@@ -297,15 +308,7 @@ public class MainFrame extends javax.swing.JFrame {
         level8.setVisible(b);
     }
 
-    private void createPanel(int level) {
-        panel = new GamePanel(this, level);
-        panel.setLocation(0, 0);
-        panel.setSize(this.getWidth(), this.getHeight() - 80);
-        panel.setVisible(true);
-        add(panel);
-        addKeyListener(new KeyChecker(this));
-        setMenuVisibility(false);
-    }
+    
 
     public GamePanel getPanel() {
         return panel;
