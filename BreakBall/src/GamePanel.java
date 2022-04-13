@@ -33,7 +33,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     Block[] blocksArray;
     Player player;
     Ball ball;
-    
+
     JLabel gameOverLabel, scoreLabel;
     JButton menu;
 
@@ -52,34 +52,12 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
                     balls.forEach(ball -> {
                         ball.set();
                     });
-                    
-                    if (timer <= 0) {
-                        timer = 0;
-                        for (Ball ball1 : balls) {
-                            if (ball1.xSpeed<0) {
-                                ball1.xSpeed = -defaultSpeed;
-                            }else{
-                                ball1.xSpeed = defaultSpeed;
-                            }
-                            if (ball1.ySpeed<0) {
-                                ball1.ySpeed = -defaultSpeed;
-                            }else{
-                                ball1.ySpeed = defaultSpeed;
-                            }
-                            
-                            
-                        }
-                    }else{
-                        timer--;
-                    }
+
+                    checkTimer();
                 } else {
-                    gameOverLabel.setVisible(true);
-
-                    scoreLabel.setVisible(true);
-                    menu.setVisible(true);
-
+                    showGameOver();
                 }
-                
+
                 repaint();
 
             }
@@ -126,6 +104,33 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         this.requestFocusInWindow();
     }
 
+    private void checkTimer() {
+        if (timer <= 0) {
+            timer = 0;
+            for (Ball ball1 : balls) {
+                if (ball1.xSpeed < 0) {
+                    ball1.xSpeed = -defaultSpeed;
+                } else {
+                    ball1.xSpeed = defaultSpeed;
+                }
+                if (ball1.ySpeed < 0) {
+                    ball1.ySpeed = -defaultSpeed;
+                } else {
+                    ball1.ySpeed = defaultSpeed;
+                }
+
+            }
+        } else {
+            timer--;
+        }
+    }
+
+    private void showGameOver() {
+        gameOverLabel.setVisible(true);
+        scoreLabel.setVisible(true);
+        menu.setVisible(true);
+    }
+
     private Integer randomInteger(int min, int max) {
         return (int) ((max - min) * Math.random()) + min;
 
@@ -135,13 +140,25 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         int count;
         int x = 20;
         int y = 10;
-        if (blocksNumber > powerBlockNumber) {
+        int maxWidth = frame.getWidth();
+        if (powerBlockNumber == 0) {
+            for (int i = 0; i < blocksNumber; i++) {
+                blocksList.add(new Block(x, y, height, width, lives, this));
+                if (x < maxWidth - (width + 50)) {
+                    x += width + 10;
+                } else {
+                    x = 20;
+                    y += height + 10;
+                }
+
+            }
+        } else if (blocksNumber > powerBlockNumber) {
             if (blocksNumber % powerBlockNumber != 0) {
                 powerBlockNumber--;
             }
             int number = blocksNumber + powerBlockNumber;
             count = blocksNumber / powerBlockNumber - 1;
-            int maxWidth = frame.getWidth();
+
             for (int i = 0; i < number; i++) {
                 if (i % count == 0) {
                     blocksList.add(new PowerBlock(x, y, height, width, lives, this));
@@ -189,7 +206,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     }
 
     private void setBallSpeed(int speed) {
-        
+
         ball.xSpeed = speed;
         ball.ySpeed = speed;
     }
@@ -216,19 +233,15 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     }
 
-//    public void setPlayer(int lives) {
-//        player = new Player(this, frame.getWidth() / 2 - 50, frame.getHeight() - 100, 100, 20, lives);
-//
-//    }
     public void setBall(int radius, int speed) {
         if (balls.isEmpty() == false) {
             balls.clear();
         }
-        balls.add(new Ball(this, blocksArray[blocksArray.length - 1].x + 30, randomInteger(100, 300), 15));
+        balls.add(new Ball(this, blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, randomInteger(100, 300), radius));
         for (Ball ball : balls) {
             ball.xSpeed = speed;
             ball.ySpeed = speed;
-            
+
         }
         defaultSpeed = speed;
     }
@@ -252,34 +265,11 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 
     }
-// tlačítko nás vrací do menu:
+//vrací do menu:
 
     private void menuActionPerformed(ActionEvent evt) {
         setVisible(false);
         frame.remove(this);
         frame.setMenuVisibility(true);
     }
-// vytvoří level podle zadaného levelu:
-
-//    private void createLevel() {
-//        gameTimer = new Timer();
-//        setFocusable(true);
-//        requestFocus();
-//        this.setBackground(new Color(254, 234, 174));
-//        player = new Player(this, frame.getWidth() / 2 - 50, frame.getHeight() - 100, 100, 20, 5);
-//        ball = new Ball(this, frame.getWidth() / 2 - 50, frame.getHeight() - randomInteger(200, 300), 15);
-//        switch (level) {
-//            case 1:
-//                generateBlocks(100, 25, 1, 21);
-//                break;
-//            case 2:
-//                generateBlocks(50, 25, 2, 36);
-//                break;
-//            case 3:
-//                generateBlocks(50, 25, 2, 50);
-//                setBallSpeed(4);
-//                break;
-//        }
-//
-//    }
 }

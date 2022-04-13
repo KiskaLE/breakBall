@@ -1,8 +1,8 @@
 
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
+
 import javax.swing.JButton;
-import javax.swing.JLabel;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -209,45 +209,37 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void level1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ActionPerformed
         panel = new GamePanel(this);
-        panel.setBlocks(39, 2, 50, 25, 2);
-        panel.setBall(15, 3);
-        
-        panel.setLocation(0, 0);
-        panel.setSize(this.getWidth(), this.getHeight() - 80);
-        panel.setVisible(true);
-        add(panel);
-        addKeyListener(new KeyChecker(this));
-        setMenuVisibility(false);
-        
-        
+        panel.setBlocks(15, 0, 100 , 30, 1);
+        panel.setBall(30, 3);
+        initPanel(panel);
     }//GEN-LAST:event_level1ActionPerformed
 
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
-        
+
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
-        
+
     }//GEN-LAST:event_level3ActionPerformed
 
     private void level4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4ActionPerformed
-        
+
     }//GEN-LAST:event_level4ActionPerformed
 
     private void level6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level6ActionPerformed
-        
+
     }//GEN-LAST:event_level6ActionPerformed
 
     private void level7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7ActionPerformed
-        
+
     }//GEN-LAST:event_level7ActionPerformed
 
     private void level8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8ActionPerformed
-        
+
     }//GEN-LAST:event_level8ActionPerformed
 
     private void level5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5ActionPerformed
-        
+
     }//GEN-LAST:event_level5ActionPerformed
 
     /**
@@ -289,14 +281,24 @@ public class MainFrame extends javax.swing.JFrame {
     private void init() {
         setFocusable(true);
         getContentPane().setBackground(new Color(217, 204, 178));
-        //addKeyListener(new KeyChecker(this));
 
     }
-/**
- * Nastavuje viditelnost menu tlačítek
- * @param b
- * @setMenuVisibility
- */
+
+    private void initPanel(GamePanel panel) {
+        panel.setLocation(0, 0);
+        panel.setSize(this.getWidth(), this.getHeight() - 80);
+        panel.setVisible(true);
+        add(panel);
+        addKeyListener(new KeyChecker(this));
+        setMenuVisibility(false);
+    }
+
+    /**
+     * Nastavuje viditelnost menu tlačítek
+     *
+     * @param b
+     * @setMenuVisibility
+     */
     public void setMenuVisibility(boolean b) {
         level1.setVisible(b);
         level2.setVisible(b);
@@ -307,8 +309,6 @@ public class MainFrame extends javax.swing.JFrame {
         level7.setVisible(b);
         level8.setVisible(b);
     }
-
-    
 
     public GamePanel getPanel() {
         return panel;

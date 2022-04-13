@@ -1,5 +1,4 @@
 
-
 import java.awt.Graphics2D;
 
 import java.awt.Rectangle;
@@ -18,7 +17,6 @@ public class Ball {
 
     int x, y, radius;
     int xSpeed, ySpeed;
-    int score;
     Rectangle hitBox;
     GamePanel panel;
 
@@ -27,9 +25,6 @@ public class Ball {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        score = 0;
-        xSpeed = -3;
-        ySpeed = 3;
         hitBox = new Rectangle(x, y, radius, radius);
     }
 
@@ -46,8 +41,7 @@ public class Ball {
         x += xSpeed;
         y += ySpeed;
 
-        hitBox.x = x;
-        hitBox.y = y;
+        hitBox.setLocation(x, y);
     }
 
     public void draw(Graphics2D gtd) {
@@ -58,7 +52,6 @@ public class Ball {
     private void removeBlock(Block block, int index) {
         panel.blocksList.remove(block);
         panel.blocksArray[index] = null;
-        score += 100;
 
     }
 
@@ -101,22 +94,6 @@ public class Ball {
 
             Block block = blocks[i];
             if (block != null) {
-                /*
-                if (block.topHitbox.intersects(hitBox) || block.bottomHitbox.intersects(hitBox)) {
-                    ySpeed *= -1;
-                    block.hp -= 1;
-
-                }
-                if (block.leftHitbox.intersects(hitBox) || block.rightHitbox.intersects(hitBox)) {
-                    xSpeed *= -1;
-                    block.hp -= 1;
-
-                }
-                if (isDead(block)) {
-                    removeBlock(block, i);
-                }
-                 */
-
                 if (block.topHitbox.intersects(hitBox) && ySpeed < 0 && ((block.leftHitbox.intersects(hitBox) && xSpeed > 0) || (block.rightHitbox.intersects(hitBox) && xSpeed < 0))) {
                     xSpeed *= -1;
                     block.hp--;
