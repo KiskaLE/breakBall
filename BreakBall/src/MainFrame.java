@@ -220,15 +220,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
         panel = new GamePanel(this);
         List<Block> blocks = new ArrayList<>();
-        Collections.addAll(blocks, generateBlocks(10, panel));
-        Collections.addAll(blocks, generatePowerBlocks(1, panel));
-        Collections.addAll(blocks, generateBlocks(5, panel));
-        Collections.addAll(blocks, generatePowerBlocks(2, panel));
-        Collections.addAll(blocks, generateBlocks(10, panel));
-        panel.setBlocks(50, 20, 2, blocks);
+        Collections.addAll(blocks, generateBlocks(10, 1, panel));
+        Collections.addAll(blocks, generatePowerBlocks(1, 2, panel));
+        Collections.addAll(blocks, generateBlocks(5, 1, panel));
+        Collections.addAll(blocks, generatePowerBlocks(2, 2, panel));
+        Collections.addAll(blocks, generateBlocks(10, 1, panel));
+        panel.setBlocks(50, 20, blocks);
         panel.setBall(20, 3);
         initPanel(panel);
-        
+
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
@@ -306,18 +306,18 @@ public class MainFrame extends javax.swing.JFrame {
         setMenuVisibility(false);
     }
 
-    private Block[] generateBlocks(int number, GamePanel panel) {
+    private Block[] generateBlocks(int number, int hp, GamePanel panel) {
         Block[] blocks = new Block[number];
         for (int i = 0; i < number; i++) {
-            blocks[i] = new Block(0, 0, 10, 10, 1, panel);
+            blocks[i] = new Block(0, 0, 10, 10, hp, panel);
         }
         return blocks;
     }
 
-    private PowerBlock[] generatePowerBlocks(int number, GamePanel panel) {
+    private PowerBlock[] generatePowerBlocks(int number, int hp, GamePanel panel) {
         PowerBlock[] blocks = new PowerBlock[number];
         for (int i = 0; i < number; i++) {
-            blocks[i] = new PowerBlock(0, 0, 10, 10, 1, panel);
+            blocks[i] = new PowerBlock(0, 0, 10, 10, hp, panel);
         }
         return blocks;
     }

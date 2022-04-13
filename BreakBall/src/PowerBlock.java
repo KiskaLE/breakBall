@@ -21,6 +21,7 @@ public class PowerBlock extends Block {
         this.panel = panel;
     }
 
+    @Override
     public void set() {
         panel.score += 100;
 
