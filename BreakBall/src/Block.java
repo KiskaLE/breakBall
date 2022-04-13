@@ -20,9 +20,9 @@ public class Block {
 
     int x;
     int y;
-    
+
     GamePanel panel;
-    
+
     Rectangle topHitbox, rightHitbox, bottomHitbox, leftHitbox;
     Rectangle hitBox;
 
@@ -44,11 +44,39 @@ public class Block {
     }
 
     public void set() {
-    panel.score +=50;
+        panel.score += 50;
+        
+    }
+
+    public void setLocation(int x, int y) {
+        this.x = x;
+        this.y = y;
+//        topHitbox.setLocation(x, y);
+//        bottomHitbox.setLocation(x, y + height - 1);
+//        rightHitbox.setLocation(x + width - 1, y);
+//        leftHitbox.setLocation(x, y);
+    }
+
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
+//        topHitbox.setSize(width, 1);
+//        bottomHitbox.setSize(width, 1);
+//        rightHitbox.setSize(1, height);
+//        leftHitbox.setSize(1, height);
+
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public void draw(Graphics2D gtd) {
-
+        topHitbox = new Rectangle(x, y, width, 1);
+        bottomHitbox = new Rectangle(x, y + height - 1, width, 1);
+        rightHitbox = new Rectangle(x + width - 1, y, 1, height);
+        leftHitbox = new Rectangle(x, y, 1, height);
+        
         gtd.setColor(new Color(0, 194, 249));
         gtd.fillRect(x, y, width, height);
 

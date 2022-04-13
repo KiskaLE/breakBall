@@ -261,6 +261,74 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         generateBlocks(blocksNumeber, PowerBlockNumber, width, height, lives);
     }
 
+    public void setBlocks(int width, int height, int hp, List<Block> blocks) {
+
+        int x = 20;
+        int y = 10;
+
+        for (int i = 0; i < blocks.size(); i++) {
+            if (i > 0) {
+                if (x < frame.getWidth() - (width + 50)) {
+                    x += width + 10;
+                } else {
+                    x = 20;
+                    y += height + 10;
+                }
+
+            }
+            Block block = blocks.get(i);
+            block.setLocation(x, y);
+            block.setSize(width, height);
+            block.setHp(hp);
+
+        }
+
+//        int count;
+//        int x = 20;
+//        int y = 10;
+//        
+//        int maxWidth = frame.getWidth();
+//        if (powerBlockNumber == 0) {
+//            for (int i = 0; i < blocksNumber; i++) {
+//                blocksList.add(new Block(x, y, height, width, lives, this));
+//                if (x < maxWidth - (width + 50)) {
+//                    x += width + 10;
+//                } else {
+//                    x = 20;
+//                    y += height + 10;
+//                }
+//
+//            }
+//        } else if (blocksNumber > powerBlockNumber) {
+//            if (blocksNumber % powerBlockNumber != 0) {
+//                powerBlockNumber--;
+//            }
+//            int number = blocksNumber + powerBlockNumber;
+//            count = blocksNumber / powerBlockNumber - 1;
+//
+//            for (int i = 0; i < number; i++) {
+//                if (i % count == 0) {
+//                    blocksList.add(new PowerBlock(x, y, height, width, lives, this));
+//                } else {
+//                    blocksList.add(new Block(x, y, height, width, lives, this));
+//                }
+//
+//                if (x < maxWidth - (width + 50)) {
+//                    x += width + 10;
+//                } else {
+//                    x = 20;
+//                    y += height + 10;
+//                }
+//            }
+//
+//        }
+        blocksArray = new Block[blocks.size()];
+        for (int i = 0; i < blocks.size(); i++) {
+            blocksArray[i] = blocks.get(i);
+
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
 

@@ -1,5 +1,8 @@
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.JButton;
 
@@ -209,13 +212,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void level1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ActionPerformed
         panel = new GamePanel(this);
-        panel.setBlocks(15, 0, 100 , 30, 1);
+        panel.setBlocks(15, 0, 100, 30, 1);
         panel.setBall(30, 3);
         initPanel(panel);
     }//GEN-LAST:event_level1ActionPerformed
 
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
-
+        panel = new GamePanel(this);
+        List<Block> blocks = new ArrayList<>();
+        Collections.addAll(blocks, generateBlocks(10, panel));
+        Collections.addAll(blocks, generatePowerBlocks(1, panel));
+        Collections.addAll(blocks, generateBlocks(5, panel));
+        Collections.addAll(blocks, generatePowerBlocks(2, panel));
+        Collections.addAll(blocks, generateBlocks(10, panel));
+        panel.setBlocks(50, 20, 2, blocks);
+        panel.setBall(20, 3);
+        initPanel(panel);
+        
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
@@ -291,6 +304,22 @@ public class MainFrame extends javax.swing.JFrame {
         add(panel);
         addKeyListener(new KeyChecker(this));
         setMenuVisibility(false);
+    }
+
+    private Block[] generateBlocks(int number, GamePanel panel) {
+        Block[] blocks = new Block[number];
+        for (int i = 0; i < number; i++) {
+            blocks[i] = new Block(0, 0, 10, 10, 1, panel);
+        }
+        return blocks;
+    }
+
+    private PowerBlock[] generatePowerBlocks(int number, GamePanel panel) {
+        PowerBlock[] blocks = new PowerBlock[number];
+        for (int i = 0; i < number; i++) {
+            blocks[i] = new PowerBlock(0, 0, 10, 10, 1, panel);
+        }
+        return blocks;
     }
 
     /**
