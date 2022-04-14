@@ -69,7 +69,7 @@ public class Ball {
             xSpeed *= -1;
         }
         if (y < 0) {
-            ySpeed *= -1;
+            ySpeed = Math.abs(ySpeed);
         }
         if (y > panel.getHeight()) {
             panel.player.live = 0;
