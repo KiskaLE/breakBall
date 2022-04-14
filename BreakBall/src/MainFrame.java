@@ -45,12 +45,9 @@ public class MainFrame extends javax.swing.JFrame {
         level6 = new javax.swing.JButton();
         level7 = new javax.swing.JButton();
         level8 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("These Nuts!");
+        setTitle("Lets break these Nuts!");
         setBackground(new java.awt.Color(217, 204, 178));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
@@ -151,14 +148,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jMenu2.setText("Level");
-        jMenuBar1.add(jMenu2);
-
-        jMenu1.setText("Settings");
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,7 +192,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(level4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,7 +226,49 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
+        panel = new GamePanel(this);
+        List<Block> blocks = new ArrayList<>();
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(4, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(4, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(5, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createPowerBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(2, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createPowerBlocks(1, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        Collections.addAll(blocks, createHiddenBlocks(1, panel));
+        Collections.addAll(blocks, createBlocks(3, 3, panel));
+        
+        panel.setBlocks(50, 25, blocks);
+        panel.setBall(20, 3.7);
 
+        initPanel(panel);
     }//GEN-LAST:event_level3ActionPerformed
 
     private void level4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4ActionPerformed
@@ -356,27 +387,12 @@ public class MainFrame extends javax.swing.JFrame {
         return panel;
     }
 
-    public JMenu getjMenu1() {
-        return jMenu1;
-    }
-
-    public JMenu getjMenu2() {
-        return jMenu2;
-    }
-
-    public JMenuBar getjMenuBar1() {
-        return jMenuBar1;
-    }
-
     public JButton getStartJButton() {
         return level1;
     }
 
     public GamePanel panel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton level1;
     private javax.swing.JButton level2;
     private javax.swing.JButton level3;
