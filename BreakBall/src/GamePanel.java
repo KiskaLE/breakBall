@@ -136,7 +136,6 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     }
 
-    
     void keyPressed(KeyEvent e) {
         if (e.getKeyChar() == 'a') {
             player.keyLeft = true;
@@ -174,13 +173,13 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             player.draw(gtd);
             if (blocksArray != null) {
                 for (Block block : blocksArray) {
-                if (block != null) {
-                    block.draw(gtd);
-                }
+                    if (block != null) {
+                        block.draw(gtd);
+                    }
 
+                }
             }
-            }
-            
+
             balls.forEach(ball -> {
                 ball.draw(gtd);
             });
@@ -195,7 +194,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             if (balls.isEmpty() == false) {
                 balls.clear();
             }
-            balls.add(new Ball(this, blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, randomInteger(100, 300), radius));
+            balls.add(new Ball(this, randomInteger(100, 300), blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, radius));
             for (Ball ball : balls) {
                 ball.xSpeed = speed;
                 ball.ySpeed = speed;
@@ -216,8 +215,6 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     public void addBall(Ball ball) {
         balls.add(ball);
     }
-
-    
 
     public void setBlocks(int width, int height, List<Block> blocks) {
 
