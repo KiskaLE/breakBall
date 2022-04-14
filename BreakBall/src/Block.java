@@ -43,6 +43,11 @@ public class Block {
 
     }
 
+    public Block() {
+    }
+    
+    
+
     public void set() {
         panel.score += 50;
         
@@ -51,19 +56,13 @@ public class Block {
     public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
-//        topHitbox.setLocation(x, y);
-//        bottomHitbox.setLocation(x, y + height - 1);
-//        rightHitbox.setLocation(x + width - 1, y);
-//        leftHitbox.setLocation(x, y);
+
     }
 
     public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
-//        topHitbox.setSize(width, 1);
-//        bottomHitbox.setSize(width, 1);
-//        rightHitbox.setSize(1, height);
-//        leftHitbox.setSize(1, height);
+
 
     }
 

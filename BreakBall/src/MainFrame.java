@@ -212,19 +212,24 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void level1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ActionPerformed
         panel = new GamePanel(this);
-        panel.setBlocks(15, 0, 100, 30, 1);
-        panel.setBall(30, 3);
+        List<Block> blocks = new ArrayList<>();
+        Collections.addAll(blocks, createBlocks(10, 1, panel));
+        Collections.addAll(blocks, createHiddenBlocks(3, panel));
+        Collections.addAll(blocks, createBlocks(10, 1, panel));
+        panel.setBlocks(75, 30, blocks);
+        panel.setBall(30, 2.8);
         initPanel(panel);
     }//GEN-LAST:event_level1ActionPerformed
 
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
         panel = new GamePanel(this);
         List<Block> blocks = new ArrayList<>();
-        Collections.addAll(blocks, generateBlocks(10, 1, panel));
-        Collections.addAll(blocks, generatePowerBlocks(1, 2, panel));
-        Collections.addAll(blocks, generateBlocks(5, 1, panel));
-        Collections.addAll(blocks, generatePowerBlocks(2, 2, panel));
-        Collections.addAll(blocks, generateBlocks(10, 1, panel));
+        Collections.addAll(blocks, createBlocks(10, 1, panel));
+        Collections.addAll(blocks, createHiddenBlocks(3, panel));
+        Collections.addAll(blocks, createPowerBlocks(1, 2, panel));
+        Collections.addAll(blocks, createBlocks(5, 1, panel));
+        Collections.addAll(blocks, createPowerBlocks(2, 2, panel));
+        Collections.addAll(blocks, createBlocks(10, 1, panel));
         panel.setBlocks(50, 20, blocks);
         panel.setBall(20, 3);
         initPanel(panel);
@@ -306,7 +311,7 @@ public class MainFrame extends javax.swing.JFrame {
         setMenuVisibility(false);
     }
 
-    private Block[] generateBlocks(int number, int hp, GamePanel panel) {
+    private Block[] createBlocks(int number, int hp, GamePanel panel) {
         Block[] blocks = new Block[number];
         for (int i = 0; i < number; i++) {
             blocks[i] = new Block(0, 0, 10, 10, hp, panel);
@@ -314,10 +319,18 @@ public class MainFrame extends javax.swing.JFrame {
         return blocks;
     }
 
-    private PowerBlock[] generatePowerBlocks(int number, int hp, GamePanel panel) {
+    private PowerBlock[] createPowerBlocks(int number, int hp, GamePanel panel) {
         PowerBlock[] blocks = new PowerBlock[number];
         for (int i = 0; i < number; i++) {
             blocks[i] = new PowerBlock(0, 0, 10, 10, hp, panel);
+        }
+        return blocks;
+    }
+
+    private HiddenBlock[] createHiddenBlocks(int number, GamePanel panel) {
+        HiddenBlock[] blocks = new HiddenBlock[number];
+        for (int i = 0; i < number; i++) {
+            blocks[i] = new HiddenBlock(panel);
         }
         return blocks;
     }

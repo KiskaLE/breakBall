@@ -26,8 +26,8 @@ public class PowerBlock extends Block {
         panel.score += 100;
 
         for (Ball ball : panel.balls) {
-            ball.xSpeed = panel.defaultSpeed + 2;
-            ball.ySpeed += panel.defaultSpeed + 2;
+            ball.xSpeed = panel.defaultSpeed + 1.2;
+            ball.ySpeed += panel.defaultSpeed + 1.2;
         }
         panel.timer = 200l;
 

@@ -16,7 +16,7 @@ import java.awt.Rectangle;
 public class Ball {
 
     int x, y, radius;
-    int xSpeed, ySpeed;
+    double xSpeed, ySpeed;
     Rectangle hitBox;
     GamePanel panel;
 

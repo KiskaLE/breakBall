@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     int width, level;
-    int defaultSpeed;
+    double defaultSpeed;
     long timer, score;
     Timer gameTimer;
     MainFrame frame;
@@ -136,53 +136,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     }
 
-    private void generateBlocks(int blocksNumber, int powerBlockNumber, int width, int height, int lives) {
-        int count;
-        int x = 20;
-        int y = 10;
-        int maxWidth = frame.getWidth();
-        if (powerBlockNumber == 0) {
-            for (int i = 0; i < blocksNumber; i++) {
-                blocksList.add(new Block(x, y, height, width, lives, this));
-                if (x < maxWidth - (width + 50)) {
-                    x += width + 10;
-                } else {
-                    x = 20;
-                    y += height + 10;
-                }
-
-            }
-        } else if (blocksNumber > powerBlockNumber) {
-            if (blocksNumber % powerBlockNumber != 0) {
-                powerBlockNumber--;
-            }
-            int number = blocksNumber + powerBlockNumber;
-            count = blocksNumber / powerBlockNumber - 1;
-
-            for (int i = 0; i < number; i++) {
-                if (i % count == 0) {
-                    blocksList.add(new PowerBlock(x, y, height, width, lives, this));
-                } else {
-                    blocksList.add(new Block(x, y, height, width, lives, this));
-                }
-
-                if (x < maxWidth - (width + 50)) {
-                    x += width + 10;
-                } else {
-                    x = 20;
-                    y += height + 10;
-                }
-            }
-
-        }
-        blocksArray = new Block[blocksList.size()];
-        for (int i = 0; i < blocksList.size(); i++) {
-            blocksArray[i] = blocksList.get(i);
-
-        }
-
-    }
-
+    
     void keyPressed(KeyEvent e) {
         if (e.getKeyChar() == 'a') {
             player.keyLeft = true;
@@ -218,13 +172,15 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         if (player.live > 0) {
             Graphics2D gtd = (Graphics2D) g;
             player.draw(gtd);
-
-            for (Block block : blocksArray) {
+            if (blocksArray != null) {
+                for (Block block : blocksArray) {
                 if (block != null) {
                     block.draw(gtd);
                 }
 
             }
+            }
+            
             balls.forEach(ball -> {
                 ball.draw(gtd);
             });
@@ -233,20 +189,24 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     }
 
-    public void setBall(int radius, int speed) {
-        if (balls.isEmpty() == false) {
-            balls.clear();
-        }
-        balls.add(new Ball(this, blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, randomInteger(100, 300), radius));
-        for (Ball ball : balls) {
-            ball.xSpeed = speed;
-            ball.ySpeed = speed;
+    public void setBall(int radius, double speed) {
+        defaultSpeed = speed;
+        if (blocksArray != null) {
+            if (balls.isEmpty() == false) {
+                balls.clear();
+            }
+            balls.add(new Ball(this, blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, randomInteger(100, 300), radius));
+            for (Ball ball : balls) {
+                ball.xSpeed = speed;
+                ball.ySpeed = speed;
+
+            }
 
         }
-        defaultSpeed = speed;
+
     }
 
-    public void setBallsSpeed(int speed) {
+    public void setBallsSpeed(double speed) {
         for (Ball ball : balls) {
             ball.xSpeed = speed;
             ball.ySpeed = speed;
@@ -257,9 +217,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         balls.add(ball);
     }
 
-    public void setBlocks(int blocksNumeber, int PowerBlockNumber, int width, int height, int lives) {
-        generateBlocks(blocksNumeber, PowerBlockNumber, width, height, lives);
-    }
+    
 
     public void setBlocks(int width, int height, List<Block> blocks) {
 
@@ -267,6 +225,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         int y = 10;
 
         for (int i = 0; i < blocks.size(); i++) {
+            Block block = blocks.get(i);
             if (i > 0) {
                 if (x < frame.getWidth() - (width + 50)) {
                     x += width + 10;
@@ -276,16 +235,23 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
                 }
 
             }
-            Block block = blocks.get(i);
-            block.setLocation(x, y);
-            block.setSize(width, height);
+            if (block.getClass() != new HiddenBlock(this).getClass()) {
+                block.setLocation(x, y);
+                block.setSize(width, height);
+            } else {
+                blocks.remove(block);
+                i--;
+            }
 
         }
-        blocksArray = new Block[blocks.size()];
-        for (int i = 0; i < blocks.size(); i++) {
-            blocksArray[i] = blocks.get(i);
+        if (blocks.isEmpty() == false) {
+            blocksArray = new Block[blocks.size()];
+            for (int i = 0; i < blocks.size(); i++) {
+                blocksArray[i] = blocks.get(i);
 
+            }
         }
+
     }
 
     @Override
