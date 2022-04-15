@@ -23,10 +23,12 @@ import javax.swing.JLabel;
  */
 public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
-    int width, level;
+    int width, level, ballRadius, ballSpeed, hp;
     double defaultSpeed;
     long timer, score;
-    Timer gameTimer;
+    private byte[][] map;
+    private int bHeight;
+    private Timer gameTimer;
     MainFrame frame;
     List<Block> blocksList = new ArrayList<>();
     List<Ball> balls = new ArrayList<>();
@@ -37,11 +39,16 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     JLabel gameOverLabel, scoreLabel;
     JButton menu;
 
-    public GamePanel(MainFrame frame) {
+    public GamePanel(MainFrame frame, byte[][] map, int height, int hp, int ballRadius, int ballSpeed) {
         this.frame = frame;
-        score = 0;
-        player = new Player(this, frame.getWidth() / 2 - 50, frame.getHeight() - 100, 100, 20, 3);
-        init();
+        this.map = map;
+        this.bHeight = height;
+        this.hp = hp;
+        this.ballRadius = ballRadius;
+        this.ballSpeed = ballSpeed;
+        
+        initComponents();
+        initLevel();
 
         gameTimer.schedule(new TimerTask() {
 
@@ -49,9 +56,9 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             public void run() {
                 if (player.live > 0) {
                     player.set();
-                    balls.forEach(ball -> {
-                        ball.set();
-                    });
+                    for (Ball ball1 : balls) {
+                        ball1.set();
+                    }
 
                     checkTimer();
                 } else {
@@ -65,7 +72,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         }, 0, 17);
     }
 
-    private void init() {
+    private void initComponents() {
         gameTimer = new Timer();
 
         setFocusable(true);
@@ -102,6 +109,14 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
         this.setFocusable(true);
         this.requestFocusInWindow();
+    }
+
+    private void initLevel() {
+        score = 0;
+        player = new Player(this, frame.getWidth() / 2 - 50, frame.getHeight() - 100, 100, 20, 3);
+        LevelMaker maker = new LevelMaker(this);
+        setBlocks(maker.createLevel(map), this.bHeight, map[0].length, hp);
+        setBall(ballRadius, ballSpeed);
     }
 
     private void checkTimer() {
@@ -188,18 +203,13 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     }
 
-    public void setBall(int radius, double speed) {
+    public void setBall(int radius, int speed) {
         defaultSpeed = speed;
         if (blocksArray != null) {
             if (balls.isEmpty() == false) {
                 balls.clear();
             }
-            balls.add(new Ball(this, randomInteger(100, 300), blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, radius));
-            for (Ball ball : balls) {
-                ball.xSpeed = speed;
-                ball.ySpeed = speed;
-
-            }
+            balls.add(new Ball(this, randomInteger(100, 300), blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, radius, speed));
 
         }
 
@@ -220,10 +230,11 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
         int x = 20;
         int y = 10;
-
+        boolean notFist = false;
         for (int i = 0; i < blocks.size(); i++) {
             Block block = blocks.get(i);
-            if (i > 0) {
+
+            if (notFist) {
                 if (x < frame.getWidth() - (width + 50)) {
                     x += width + 10;
                 } else {
@@ -231,6 +242,8 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
                     y += height + 10;
                 }
 
+            } else {
+                notFist = true;
             }
             if (block.getClass() != new HiddenBlock(this).getClass()) {
                 block.setLocation(x, y);
@@ -247,6 +260,45 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
                 blocksArray[i] = blocks.get(i);
 
             }
+        }
+
+    }
+
+    public void setBlocks(List<Block> blocks, int height, int xBlocksCount, int hp) {
+
+        int x = 20;
+        int y = 10;
+        int c = 0;
+        final int width = (frame.getWidth() - 2 * x - xBlocksCount * 10) / xBlocksCount;
+        Block[] II;
+        boolean notFist = false;
+        for (int i = 0; i < blocks.size(); i++) {
+            Block block = blocks.get(i);
+
+            if (block.getClass() != new HiddenBlock(this).getClass()) {
+                block.setLocation(x, y);
+                block.setSize(width, height);
+                block.setHp(hp);
+            } else {
+                blocks.remove(block);
+                i--;
+            }
+            if (c < xBlocksCount - 1) {
+                x += 10 + width;
+                c++;
+            } else {
+                x = 20;
+                y += 10 + height;
+                c = 0;
+            }
+        }
+        if (blocks.isEmpty() == false) {
+            blocksArray = new Block[blocks.size()];
+            for (int i = 0; i < blocks.size(); i++) {
+                blocksArray[i] = blocks.get(i);
+
+            }
+
         }
 
     }

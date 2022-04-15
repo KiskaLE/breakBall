@@ -20,11 +20,13 @@ public class Ball {
     Rectangle hitBox;
     GamePanel panel;
 
-    public Ball(GamePanel panel, int x, int y, int radius) {
+    public Ball(GamePanel panel, int x, int y, int radius, int speed) {
         this.panel = panel;
         this.x = x;
         this.y = y;
         this.radius = radius;
+        xSpeed = speed;
+        ySpeed = speed;
         hitBox = new Rectangle(x, y, radius, radius);
     }
 

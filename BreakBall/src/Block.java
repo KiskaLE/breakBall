@@ -43,7 +43,13 @@ public class Block {
 
     }
 
-    public Block() {
+    public Block(GamePanel panel) {
+        this.panel = panel;
+        
+        topHitbox = new Rectangle(1, 1, 1, 1);
+        bottomHitbox = new Rectangle(1, 1, 1, 1);
+        rightHitbox = new Rectangle(1, 1, 1, 1);
+        leftHitbox = new Rectangle(1, 1, 1, 1);
     }
     
     

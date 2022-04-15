@@ -14,12 +14,21 @@ import java.awt.Rectangle;
  */
 public class PowerBlock extends Block {
 
-    GamePanel panel;
+    //GamePanel panel;
 
     public PowerBlock(int x, int y, int height, int width, int hp, GamePanel panel) {
         super(x, y, height, width, hp, panel);
         this.panel = panel;
     }
+
+    public PowerBlock(GamePanel panel) {
+        super(panel);
+        topHitbox = new Rectangle(1, 1, 1, 1);
+        bottomHitbox = new Rectangle(1, 1, 1, 1);
+        rightHitbox = new Rectangle(1, 1, 1, 1);
+        leftHitbox = new Rectangle(1, 1, 1, 1);
+    }
+    
 
     @Override
     public void set() {

@@ -12,7 +12,11 @@ import java.awt.*;
 public class HiddenBlock extends Block {
 
     public HiddenBlock(GamePanel panel) {
-        super.panel = panel;
+        super(panel);
+     topHitbox = new Rectangle(1, 1, 1, 1);
+        bottomHitbox = new Rectangle(1, 1, 1, 1);
+        rightHitbox = new Rectangle(1, 1, 1, 1);
+        leftHitbox = new Rectangle(1, 1, 1, 1);
     }
 
     @Override
