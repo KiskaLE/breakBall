@@ -206,7 +206,7 @@ public class MainFrame extends javax.swing.JFrame {
         Collections.addAll(blocks, createHiddenBlocks(3, panel));
         Collections.addAll(blocks, createBlocks(10, 1, panel));
         panel.setBlocks(75, 30, blocks);
-        panel.setBall(30, 2.8);
+        panel.setBall(30, 3);
         initPanel(panel);
     }//GEN-LAST:event_level1ActionPerformed
 
@@ -264,15 +264,26 @@ public class MainFrame extends javax.swing.JFrame {
         Collections.addAll(blocks, createBlocks(3, 3, panel));
         Collections.addAll(blocks, createHiddenBlocks(1, panel));
         Collections.addAll(blocks, createBlocks(3, 3, panel));
-        
+
         panel.setBlocks(50, 25, blocks);
-        panel.setBall(20, 3.7);
+        panel.setBall(20, 3);
 
         initPanel(panel);
     }//GEN-LAST:event_level3ActionPerformed
 
     private void level4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4ActionPerformed
-
+        
+        byte[][] map = new byte[][]{
+            new byte[]{0, 0, 1, 2, 0, 1, 1, 1, 0, 0, 1, 1},
+            new byte[]{1, 1, 0, 1, 0, 1, 1, 0, 2, 0, 0, 1},
+            new byte[]{1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0},
+            new byte[]{0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1}
+        };
+        
+        panel = new GamePanel(this, map, 25, 3, 15, 3);
+        initPanel(panel);
+       
+        
     }//GEN-LAST:event_level4ActionPerformed
 
     private void level6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level6ActionPerformed
