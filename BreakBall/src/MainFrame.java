@@ -200,75 +200,15 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void level1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ActionPerformed
-        panel = new GamePanel(this);
-        List<Block> blocks = new ArrayList<>();
-        Collections.addAll(blocks, createBlocks(10, 1, panel));
-        Collections.addAll(blocks, createHiddenBlocks(3, panel));
-        Collections.addAll(blocks, createBlocks(10, 1, panel));
-        panel.setBlocks(75, 30, blocks);
-        panel.setBall(30, 3);
-        initPanel(panel);
+        
     }//GEN-LAST:event_level1ActionPerformed
 
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
-        panel = new GamePanel(this);
-        List<Block> blocks = new ArrayList<>();
-        Collections.addAll(blocks, createBlocks(10, 1, panel));
-        Collections.addAll(blocks, createHiddenBlocks(3, panel));
-        Collections.addAll(blocks, createPowerBlocks(1, 2, panel));
-        Collections.addAll(blocks, createBlocks(5, 1, panel));
-        Collections.addAll(blocks, createPowerBlocks(2, 2, panel));
-        Collections.addAll(blocks, createBlocks(10, 1, panel));
-        panel.setBlocks(50, 20, blocks);
-        panel.setBall(20, 3);
-        initPanel(panel);
-
+        
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
-        panel = new GamePanel(this);
-        List<Block> blocks = new ArrayList<>();
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(4, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(4, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(5, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createPowerBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(2, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createPowerBlocks(1, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-        Collections.addAll(blocks, createHiddenBlocks(1, panel));
-        Collections.addAll(blocks, createBlocks(3, 3, panel));
-
-        panel.setBlocks(50, 25, blocks);
-        panel.setBall(20, 3);
-
-        initPanel(panel);
+        
     }//GEN-LAST:event_level3ActionPerformed
 
     private void level4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4ActionPerformed
