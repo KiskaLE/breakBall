@@ -46,7 +46,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         this.hp = hp;
         this.ballRadius = ballRadius;
         this.ballSpeed = ballSpeed;
-        
+
         initComponents();
         initLevel();
 
@@ -226,59 +226,21 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         balls.add(ball);
     }
 
-    public void setBlocks(int width, int height, List<Block> blocks) {
-
-        int x = 20;
-        int y = 10;
-        boolean notFist = false;
-        for (int i = 0; i < blocks.size(); i++) {
-            Block block = blocks.get(i);
-
-            if (notFist) {
-                if (x < frame.getWidth() - (width + 50)) {
-                    x += width + 10;
-                } else {
-                    x = 20;
-                    y += height + 10;
-                }
-
-            } else {
-                notFist = true;
-            }
-            if (block.getClass() != new HiddenBlock(this).getClass()) {
-                block.setLocation(x, y);
-                block.setSize(width, height);
-            } else {
-                blocks.remove(block);
-                i--;
-            }
-
-        }
-        if (blocks.isEmpty() == false) {
-            blocksArray = new Block[blocks.size()];
-            for (int i = 0; i < blocks.size(); i++) {
-                blocksArray[i] = blocks.get(i);
-
-            }
-        }
-
-    }
-
     public void setBlocks(List<Block> blocks, int height, int xBlocksCount, int hp) {
 
         int x = 20;
         int y = 10;
         int c = 0;
         final int width = (frame.getWidth() - 2 * x - xBlocksCount * 10) / xBlocksCount;
-        Block[] II;
         boolean notFist = false;
+        
         for (int i = 0; i < blocks.size(); i++) {
             Block block = blocks.get(i);
 
             if (block.getClass() != new HiddenBlock(this).getClass()) {
+                block.setHp(hp);
                 block.setLocation(x, y);
                 block.setSize(width, height);
-                block.setHp(hp);
             } else {
                 blocks.remove(block);
                 i--;
@@ -293,11 +255,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             }
         }
         if (blocks.isEmpty() == false) {
-            blocksArray = new Block[blocks.size()];
-            for (int i = 0; i < blocks.size(); i++) {
-                blocksArray[i] = blocks.get(i);
-
-            }
+            blocksArray = blocks.toArray(new Block[blocks.size()]);
 
         }
 

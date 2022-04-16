@@ -1,13 +1,8 @@
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import javax.swing.JButton;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -291,30 +286,6 @@ public class MainFrame extends javax.swing.JFrame {
         add(panel);
         addKeyListener(new KeyChecker(this));
         setMenuVisibility(false);
-    }
-
-    private Block[] createBlocks(int number, int hp, GamePanel panel) {
-        Block[] blocks = new Block[number];
-        for (int i = 0; i < number; i++) {
-            blocks[i] = new Block(0, 0, 10, 10, hp, panel);
-        }
-        return blocks;
-    }
-
-    private PowerBlock[] createPowerBlocks(int number, int hp, GamePanel panel) {
-        PowerBlock[] blocks = new PowerBlock[number];
-        for (int i = 0; i < number; i++) {
-            blocks[i] = new PowerBlock(0, 0, 10, 10, hp, panel);
-        }
-        return blocks;
-    }
-
-    private HiddenBlock[] createHiddenBlocks(int number, GamePanel panel) {
-        HiddenBlock[] blocks = new HiddenBlock[number];
-        for (int i = 0; i < number; i++) {
-            blocks[i] = new HiddenBlock(panel);
-        }
-        return blocks;
     }
 
     /**
