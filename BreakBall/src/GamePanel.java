@@ -23,7 +23,7 @@ import javax.swing.JLabel;
  */
 public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
-    int width, level, ballRadius, ballSpeed, hp;
+    int width, level, ballRadius, ballSpeed, hp, spawnY;
     double defaultSpeed;
     long timer, score;
     private byte[][] map;
@@ -54,7 +54,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
             @Override
             public void run() {
-                if (player.live > 0) {
+                if (balls.size() > 0) {
                     player.set();
                     for (int i = 0; i < balls.size(); i++) {
                         balls.get(i).set();
@@ -184,7 +184,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
 
-        if (player.live > 0) {
+        if (balls.size() > 0) {
             Graphics2D gtd = (Graphics2D) g;
             player.draw(gtd);
             if (blocksArray != null) {
@@ -206,14 +206,15 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     public void setBall(int radius, int speed) {
         defaultSpeed = speed;
+        spawnY =blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10;
         if (blocksArray != null) {
             if (balls.isEmpty() == false) {
                 balls.clear();
             }
-            balls.add(new Ball(this, randomInteger(100, 300), blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10, radius, speed));
+            balls.add(new Ball(this, randomInteger(100, 300), spawnY, radius, speed));
 
         }
-
+        
     }
 
     public void setBallsSpeed(double speed) {

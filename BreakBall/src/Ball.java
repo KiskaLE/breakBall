@@ -74,7 +74,8 @@ public class Ball {
             ySpeed = Math.abs(ySpeed);
         }
         if (y > panel.getHeight()) {
-            panel.player.live = 0;
+            //panel.player.live = 0;
+            panel.balls.remove(this);
         }
     }
 

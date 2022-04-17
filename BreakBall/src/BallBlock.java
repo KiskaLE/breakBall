@@ -26,7 +26,7 @@ public class BallBlock extends Block {
     public void set() {
         Ball ball = panel.balls.stream().findFirst().get();
         
-        panel.addBall(new Ball(panel, randomInteger(100, 300), panel.blocksArray[panel.blocksArray.length - 1].y + panel.blocksArray[panel.blocksArray.length - 1].height + 10, ball.radius, (int) ball.xSpeed));
+        panel.addBall(new Ball(panel, randomInteger(100, 300), panel.spawnY, ball.radius, (int) ball.xSpeed));
     }
     
     private Integer randomInteger(int min, int max) {
