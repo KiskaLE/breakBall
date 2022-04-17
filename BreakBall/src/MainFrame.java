@@ -216,11 +216,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
         byte[][] map = new byte[][]{
-            new byte[]{3},
-            new byte[]{},
-            new byte[]{},
-            new byte[]{}
-        };
+            new byte[]{1, 1, 0, 0, 1, 1, 1, 0, 1, 1},
+            new byte[]{1, 1, 1, 1, 3, 0, 1, 1, 3, 1},
+            new byte[]{2, 1, 0, 1, 1, 1, 0, 0, 1, 2},};
 
         panel = new GamePanel(this, map, 25, 1, 15, 3);
         initPanel(panel);
@@ -254,7 +252,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_level8ActionPerformed
 
     private void level5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5ActionPerformed
+        byte[][] map = new byte[][]{
+            new byte[]{3}};
 
+        panel = new GamePanel(this, map, 25, 1, 15, 3);
+        initPanel(panel);
     }//GEN-LAST:event_level5ActionPerformed
 
     /**
