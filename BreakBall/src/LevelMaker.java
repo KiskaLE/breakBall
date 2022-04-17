@@ -30,6 +30,7 @@ public class LevelMaker {
                     case 0 -> blocks.add(new HiddenBlock(panel));
                     case 1 -> blocks.add(new Block(panel));
                     case 2 -> blocks.add(new PowerBlock(panel));
+                    case 3 -> blocks.add(new BallBlock(panel));
                 }
             }
         }

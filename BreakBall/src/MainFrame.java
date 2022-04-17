@@ -2,8 +2,6 @@
 import java.awt.Color;
 import javax.swing.JButton;
 
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -195,30 +193,52 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void level1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1ActionPerformed
-        
+        byte[][] map = new byte[][]{
+            new byte[]{1, 1, 1, 1, 1, 1},
+            new byte[]{1, 0, 1, 0, 1, 0},
+            new byte[]{1, 1, 1, 0, 0, 0},
+            new byte[]{0, 0, 0, 1, 1, 1}
+        };
+
+        panel = new GamePanel(this, map, 25, 2, 20, 3);
+        initPanel(panel);
     }//GEN-LAST:event_level1ActionPerformed
 
     private void level2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2ActionPerformed
-        
+        byte[][] map = new byte[][]{
+            new byte[]{1, 1, 0, 0, 1, 1, 1, 0, 1, 1},
+            new byte[]{1, 1, 1, 1, 0, 0, 1, 1, 1, 1},
+            new byte[]{2, 1, 0, 1, 1, 1, 0, 0, 1, 2},};
+
+        panel = new GamePanel(this, map, 25, 3, 15, 3);
+        initPanel(panel);
     }//GEN-LAST:event_level2ActionPerformed
 
     private void level3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3ActionPerformed
-        
+        byte[][] map = new byte[][]{
+            new byte[]{3},
+            new byte[]{},
+            new byte[]{},
+            new byte[]{}
+        };
+
+        panel = new GamePanel(this, map, 25, 1, 15, 3);
+        initPanel(panel);
     }//GEN-LAST:event_level3ActionPerformed
 
     private void level4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4ActionPerformed
-        
+
         byte[][] map = new byte[][]{
             new byte[]{0, 0, 1, 2, 0, 1, 1, 1, 0, 0, 1, 1},
             new byte[]{1, 1, 0, 1, 0, 1, 1, 0, 2, 0, 0, 1},
             new byte[]{1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0},
             new byte[]{0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1}
         };
-        
+
         panel = new GamePanel(this, map, 25, 3, 15, 3);
         initPanel(panel);
-       
-        
+
+
     }//GEN-LAST:event_level4ActionPerformed
 
     private void level6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level6ActionPerformed

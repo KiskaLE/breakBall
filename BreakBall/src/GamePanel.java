@@ -56,8 +56,9 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             public void run() {
                 if (player.live > 0) {
                     player.set();
-                    for (Ball ball1 : balls) {
-                        ball1.set();
+                    for (int i = 0; i < balls.size(); i++) {
+                        balls.get(i).set();
+                        
                     }
 
                     checkTimer();

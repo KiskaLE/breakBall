@@ -23,10 +23,7 @@ public class PowerBlock extends Block {
 
     public PowerBlock(GamePanel panel) {
         super(panel);
-        topHitbox = new Rectangle(1, 1, 1, 1);
-        bottomHitbox = new Rectangle(1, 1, 1, 1);
-        rightHitbox = new Rectangle(1, 1, 1, 1);
-        leftHitbox = new Rectangle(1, 1, 1, 1);
+        
     }
     
 
@@ -35,10 +32,10 @@ public class PowerBlock extends Block {
         panel.score += 100;
 
         for (Ball ball : panel.balls) {
-            ball.xSpeed = panel.defaultSpeed + 1.2;
-            ball.ySpeed += panel.defaultSpeed + 1.2;
+            ball.xSpeed = panel.defaultSpeed + 1;
+            ball.ySpeed += panel.defaultSpeed + 1;
         }
-        panel.timer = 200l;
+        panel.timer =(long) (1000-500 * Math.random() + 500);
 
     }
 
