@@ -54,15 +54,18 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
             @Override
             public void run() {
-                if (balls.size() > 0) {
+                if (isWin()) {
+                    showWin();
+                } else if (balls.size() > 0) {
                     player.set();
                     for (int i = 0; i < balls.size(); i++) {
                         balls.get(i).set();
-                        
+
                     }
 
                     checkTimer();
                 } else {
+
                     showGameOver();
                 }
 
@@ -70,7 +73,8 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
             }
 
-        }, 0, 17);
+        },
+                0, 17);
     }
 
     private void initComponents() {
@@ -142,6 +146,14 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     }
 
     private void showGameOver() {
+        gameOverLabel.setText("Game Over");
+        gameOverLabel.setVisible(true);
+        scoreLabel.setVisible(true);
+        menu.setVisible(true);
+    }
+
+    private void showWin() {
+        gameOverLabel.setText("You win");
         gameOverLabel.setVisible(true);
         scoreLabel.setVisible(true);
         menu.setVisible(true);
@@ -206,7 +218,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
     public void setBall(int radius, int speed) {
         defaultSpeed = speed;
-        spawnY =blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10;
+        spawnY = blocksArray[blocksArray.length - 1].y + blocksArray[blocksArray.length - 1].height + 10;
         if (blocksArray != null) {
             if (balls.isEmpty() == false) {
                 balls.clear();
@@ -214,7 +226,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             balls.add(new Ball(this, randomInteger(100, 300), spawnY, radius, speed));
 
         }
-        
+
     }
 
     public void setBallsSpeed(double speed) {
@@ -235,7 +247,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         int c = 0;
         final int width = (frame.getWidth() - 2 * x - xBlocksCount * 10) / xBlocksCount;
         boolean notFist = false;
-        
+
         for (int i = 0; i < blocks.size(); i++) {
             Block block = blocks.get(i);
 
@@ -273,5 +285,15 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         setVisible(false);
         frame.remove(this);
         frame.setMenuVisibility(true);
+    }
+
+    private boolean isWin() {
+        boolean b = true;
+        for (Block block : blocksArray) {
+            if (block != null) {
+                b = false;
+            }
+        }
+        return b;
     }
 }
